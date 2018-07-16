@@ -132,7 +132,7 @@ export default class TextFit extends React.Component {
                 whilstCallback => {
                     if (shouldCancelProcess()) return whilstCallback(true);
                     mid = parseInt((low + high) / 2, 10);
-                    this.setState({ fontSize: mid }, () => {
+                    this.setState({ fontSize: mid + 'rem' }, () => {
                         if (shouldCancelProcess()) return whilstCallback(true);
                         if (testPrimary()) low = mid + 1;
                         else high = mid - 1;
@@ -155,7 +155,7 @@ export default class TextFit extends React.Component {
                     whilstCallback => {
                         if (shouldCancelProcess()) return whilstCallback(true);
                         mid = parseInt((low + high) / 2, 10);
-                        this.setState({ fontSize: mid }, () => {
+                        this.setState({ fontSize: mid + 'rem' }, () => {
                             if (pid !== this.pid) return whilstCallback(true);
                             if (testSecondary()) low = mid + 1;
                             else high = mid - 1;
@@ -180,7 +180,7 @@ export default class TextFit extends React.Component {
                 mid = Math.max(mid, 0);
 
                 if (shouldCancelProcess()) return stepCallback(true);
-                this.setState({ fontSize: mid }, stepCallback);
+                this.setState({ fontSize: mid + 'rem' }, stepCallback);
             }
         ], err => {
             // err will be true, if another process was triggered
