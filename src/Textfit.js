@@ -132,7 +132,7 @@ export default class TextFit extends React.Component {
                 whilstCallback => {
                     if (shouldCancelProcess()) return whilstCallback(true);
                     mid = parseInt((low + high) / 2, 10);
-                    this.setState({ fontSize: mid + 'rem' }, () => {
+                    this.setState({ fontSize: mid }, () => {
                         if (shouldCancelProcess()) return whilstCallback(true);
                         if (testPrimary()) low = mid + 1;
                         else high = mid - 1;
@@ -155,7 +155,7 @@ export default class TextFit extends React.Component {
                     whilstCallback => {
                         if (shouldCancelProcess()) return whilstCallback(true);
                         mid = parseInt((low + high) / 2, 10);
-                        this.setState({ fontSize: mid + 'rem' }, () => {
+                        this.setState({ fontSize: mid }, () => {
                             if (pid !== this.pid) return whilstCallback(true);
                             if (testSecondary()) low = mid + 1;
                             else high = mid - 1;
@@ -180,7 +180,7 @@ export default class TextFit extends React.Component {
                 mid = Math.max(mid, 0);
 
                 if (shouldCancelProcess()) return stepCallback(true);
-                this.setState({ fontSize: mid + 'rem' }, stepCallback);
+                this.setState({ fontSize: mid }, stepCallback);
             }
         ], err => {
             // err will be true, if another process was triggered
@@ -207,9 +207,10 @@ export default class TextFit extends React.Component {
             ...props
         } = this.props;
         const { fontSize, ready } = this.state;
+        const fontSizeFinal = fontSize + 'rem';
         const finalStyle = {
             ...style,
-            fontSize: fontSize
+            fontSize: fontSizeFinal
         };
 
         const wrapperStyle = {
